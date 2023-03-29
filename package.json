@@ -1,0 +1,15 @@
+{
+  "name": "to-do-list-app",
+  "version": "1.0.0",
+  "description": "To-Do List App that presents the current day of the week/date to the user. The application allows users to add items to a list and check off/cross out each item as tasks are completed.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Phillip Squarcetta",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
+  }
+}
