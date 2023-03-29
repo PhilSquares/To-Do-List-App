@@ -10,9 +10,11 @@
    <h1> <%= kindOfDay %> </h1>
 
    <ul>
-        <li>Buy Food</li>
-        <li>Cook Food</li>
-        <li>Eat Food</li>
+        <!-- For loop that loops through each item in the newListItems array using snippet tags where needed. -->
+        <% for(let i = 0; i < newListItems.length; i++) { %>
+            <!-- The line below uses a slightly different tag which gets the value of a newListItem at index i. -->
+            <li><%= newListItems[i] %></li>
+        <% } %>
    </ul>
 
    <form class="" action="/" method="post">

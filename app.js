@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const app = express();
+let items = ["Buy Food", "Cook Food", "Eat Food"];
 
 //Setup bodyParser: Must be setup before req.body.newItem can be used below.
 app.use(bodyParser.urlencoded({extended: true}));
@@ -19,12 +20,15 @@ app.get("/", function(req, res){
     };
 
     let day = today.toLocaleDateString("en-US", options);
-    res.render("list", {kindOfDay: day});
+    //The entire items array is passed in here:
+    res.render("list", {kindOfDay: day, newListItems: items});
 });
 
 app.post("/", function(req, res){
-    let item = req.body.newItem;
-    console.log(item);
+    //Each time we get a new post request, a new item is created below:
+    item = req.body.newItem;
+    items.push(item);
+    res.redirect("/");
 });
 
 app.listen(3000, function(){
