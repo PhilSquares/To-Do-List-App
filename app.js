@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 let items = ["Buy Food", "Cook Food", "Eat Food"];
+let workItems = [];
 
 //Setup bodyParser: Must be setup before req.body.newItem can be used below.
 app.use(bodyParser.urlencoded({extended: true}));
@@ -23,14 +24,24 @@ app.get("/", function(req, res){
 
     let day = today.toLocaleDateString("en-US", options);
     //The entire items array is passed in here:
-    res.render("list", {kindOfDay: day, newListItems: items});
+    res.render("list", {listTitle: day, newListItems: items});
 });
 
 app.post("/", function(req, res){
-    //Each time we get a new post request, a new item is created below:
-    item = req.body.newItem;
-    items.push(item);
-    res.redirect("/");
+    //Grabs the item from the post request.
+    let item = req.body.newItem;
+    //If the request comes from our work list, push the value to the workItems array.
+    if(req.body.list === "Work"){
+        workItems.push(item);
+        res.redirect("/work");
+    } else {
+        items.push(item);
+        res.redirect("/");
+    }
+});
+
+app.get("/work", function(req, res){
+    res.render("list", {listTitle: "Work List", newListItems: workItems});
 });
 
 app.listen(3000, function(){
