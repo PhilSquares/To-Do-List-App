@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,20 +8,29 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>To Do List</title>
 </head>
+
 <body>
-   <h1> <%= kindOfDay %> </h1>
+    <div class="box" id="heading">
+        <h1>
+            <%= kindOfDay %>
+        </h1>
+    </div>
 
-   <ul>
-        <!-- For loop that loops through each item in the newListItems array using snippet tags where needed. -->
-        <% for(let i = 0; i < newListItems.length; i++) { %>
-            <!-- The line below uses a slightly different tag which gets the value of a newListItem at index i. -->
-            <li><%= newListItems[i] %></li>
+    <div class="box">
+        <% for(let i=0; i < newListItems.length; i++) { %>
+        <div class="item">
+        <input type="checkbox">
+            <p><%= newListItems[i] %></p>
+        </div>
+
         <% } %>
-   </ul>
 
-   <form class="" action="/" method="post">
-        <input type="text" name="newItem">
-        <button type="submit" name="button">Add</button>
-   </form>
+        <form class="item" action="/" method="post">
+            <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+            <button type="submit" name="button">+</button>
+        </form>
+    </div>
+
 </body>
+
 </html>
