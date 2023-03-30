@@ -8,6 +8,8 @@ let items = ["Buy Food", "Cook Food", "Eat Food"];
 
 //Setup bodyParser: Must be setup before req.body.newItem can be used below.
 app.use(bodyParser.urlencoded({extended: true}));
+//Tell Express where to find the styles for the application:
+app.use(express.static("public"));
 
 app.set("view engine", "ejs");
 
