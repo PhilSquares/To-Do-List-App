@@ -11,6 +11,10 @@
         <div class="item">
         <input type="checkbox">
             <p><%= newListItems[i] %></p>
+            <form action="/delete" method="post">
+                <input type="hidden" name="itemIndex" value="<%= i %>">
+                <button type="submit"></button>
+            </form>
         </div>
 
         <% } %>
