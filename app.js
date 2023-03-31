@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js");
 
 const app = express();
+const port = 5000
 const items = ["Buy Food", "Cook Food", "Eat Food"];
 const workItems = [];
 
@@ -37,6 +38,4 @@ app.get("/work", function(req, res){
     res.render("list", {listTitle: "Work List", newListItems: workItems});
 });
 
-app.listen(3000, function(){
-    console.log("Server started on port 3000");
-});
+app.listen(process.env.PORT || port, () => console.log(`Listening on port ${port}`))
