@@ -2,10 +2,11 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const date = require(__dirname + "/date.js");
 
 const app = express();
-let items = ["Buy Food", "Cook Food", "Eat Food"];
-let workItems = [];
+const items = ["Buy Food", "Cook Food", "Eat Food"];
+const workItems = [];
 
 //Setup bodyParser: Must be setup before req.body.newItem can be used below.
 app.use(bodyParser.urlencoded({extended: true}));
@@ -15,21 +16,13 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", function(req, res){
-    let today = new Date();
-    let options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-    };
-
-    let day = today.toLocaleDateString("en-US", options);
-    //The entire items array is passed in here:
+    const day = date.getDate();
     res.render("list", {listTitle: day, newListItems: items});
 });
 
 app.post("/", function(req, res){
     //Grabs the item from the post request.
-    let item = req.body.newItem;
+    const item = req.body.newItem;
     //If the request comes from our work list, push the value to the workItems array.
     if(req.body.list === "Work"){
         workItems.push(item);
